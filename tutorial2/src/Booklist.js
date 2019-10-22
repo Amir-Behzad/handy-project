@@ -9,16 +9,21 @@ export default class Booklist extends Component {
       books: booksData
     };
   }
-  //   state = {
-  //     books: booksData
-  //   };
+
+  handleDelete = id => {
+    console.log(this.state.books);
+    const sortedBooks = this.state.books.filter(item => item.id !== id);
+    this.setState({
+      books: sortedBooks
+    });
+  };
 
   render() {
     return (
       <section>
         <h3>This is our Booklist.</h3>
         {this.state.books.map(item => (
-          <Book key={item.id} info={item} />
+          <Book key={item.id} info={item} handleDelete={this.handleDelete} />
         ))}
       </section>
     );
